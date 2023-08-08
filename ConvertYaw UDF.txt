@@ -1,0 +1,14 @@
+'This is a User Defined Function (UDF)
+Function ConvertYaw(rng As Range) As Variant
+    If rng = "" Then
+        ConvertYaw = 0
+        Exit Function
+    End If
+    Penetrator = ActiveSheet.Cells(5, 5).Value
+    'provide error handling only let them pass in one cell not a whole range
+    With Worksheets("Conversion Tables")
+        colx = Application.Match(Penetrator, .Rows(1), 0)
+        rowx = Application.Match(rng, .Columns(colx), 1)
+        ConvertYaw = Application.Index(.Columns(colx + 1), rowx)
+    End With
+End Function
